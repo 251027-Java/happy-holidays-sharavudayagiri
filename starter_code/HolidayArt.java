@@ -13,10 +13,13 @@
 public class HolidayArt {
 
     public static void main(String[] args) {
-        // TODO: Parse command-line argument for tree height (default: 5)
+        // Parse command-line argument for tree height (default: 5)
         int height = 5;
+        if (args.length > 0) {
+            height = Integer.parseInt(args[0]);
+        }
 
-        // TODO: Print the tree
+        // Print the tree
         printTree(height);
     }
 
@@ -26,15 +29,21 @@ public class HolidayArt {
      * @param height Number of branch levels (not including star and trunk)
      */
     public static void printTree(int height) {
-        // TODO: Implement this method
-        //
-        // Steps:
-        // 1. Print the star on top (centered)
-        // 2. Loop through each level of branches
-        // - Calculate spaces needed for centering
-        // - Calculate stars needed (1, 3, 5, 7, ...)
-        // 3. Print the trunk (centered)
-
-        System.out.println("Implement me!");
+        // Print the star on top (centered)
+        int maxWidth = 2 * height - 1;
+        int starSpaces = (maxWidth - 1) / 2;
+        System.out.println(" ".repeat(starSpaces) + "*");
+        
+        // Print each level of branches
+        for (int level = 1; level <= height; level++) {
+            int stars = 2 * level - 1;
+            int spaces = (maxWidth - stars) / 2;
+            System.out.println(" ".repeat(spaces) + "*".repeat(stars));
+        }
+        
+        // Print the trunk (centered)
+        int trunkWidth = 3;
+        int trunkSpaces = (maxWidth - trunkWidth) / 2;
+        System.out.println(" ".repeat(trunkSpaces) + "|||");
     }
 }
